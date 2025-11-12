@@ -11,10 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
-*.jpg
-*.jpeg
-*.mp4
-*.zip
+# *.jpg
+# *.jpeg
+# *.mp4
+# *.zip
 
 # Editor directories and files
 .vscode/*
