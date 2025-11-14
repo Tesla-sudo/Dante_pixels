@@ -103,6 +103,7 @@ export default function Navbar() {
                     initial={{ rotate: -90 }}
                     animate={{ rotate: 0 }}
                     exit={{ rotate: 90 }}
+                    className="text-yellow-400"
                   >
                     <X size={24} />
                   </motion.div>
@@ -112,6 +113,7 @@ export default function Navbar() {
                     initial={{ rotate: 90 }}
                     animate={{ rotate: 0 }}
                     exit={{ rotate: -90 }}
+                    className="text-yellow-400"
                   >
                     <Menu size={24} />
                   </motion.div>

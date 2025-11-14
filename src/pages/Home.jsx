@@ -2,12 +2,41 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Instagram, Mail, Phone } from "lucide-react";
+import { Instagram, Mail, Phone, Youtube } from "lucide-react";
 
 import heroImage from "../assets/hero-videography.jpeg";
+
+// Service images
+import done1 from "../assets/done1.jpg";
+import done5 from "../assets/done5.jpg";
+import done9 from "../assets/done9.jpg";
+
 import natureImage from "../assets/done5.jpg";
 
 export default function Home() {
+ const services = [
+  {
+    title: "Dawn Through the Earth",
+    image: done1,
+    description:
+      "A tranquil sunrise framed through natural elements capturing the soft glow, silhouettes, and the quiet awakening of the landscape. This style focuses on subtle tones and poetic compositions found in early morning nature scenes.",
+  },
+  {
+    title: "Minimal Botanical Beauty",
+    image: done5,
+    description:
+      "A clean, fresh aesthetic highlighting the elegance of simple plant life. The soft whites and deep greens create a calming visual that celebrates purity and the quiet details of nature’s design.",
+  },
+  {
+    title: "Vibrant Flora Expressions",
+    image: done9,
+    description:
+      "A bold and colorful celebration of botanical life. These images emphasize strong hues from lively greens to warm, reddish-yellow petals revealing the expressive character found in nature’s textures and tones.",
+  },
+];
+
+
+
   return (
     <>
       {/* Hero */}
@@ -20,6 +49,7 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         </div>
+
         <div className="relative flex h-full flex-col items-center justify-center px-6 text-center">
           <motion.p
             initial={{ opacity: 0, y: -30 }}
@@ -29,6 +59,7 @@ export default function Home() {
           >
             Capture • Edit • Inspire
           </motion.p>
+
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -36,9 +67,9 @@ export default function Home() {
             className="mb-6 text-5xl md:text-7xl font-bold text-white drop-shadow-lg"
             style={{ fontFamily: '"Playfair Display", serif' }}
           >
-            Welcome to{' '}
-            <span className="text-yellow-500">Done Pictures</span>
+            Welcome to <span className="text-yellow-500">Done Pictures</span>
           </motion.h1>
+
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -47,11 +78,13 @@ export default function Home() {
           >
             Professional videography and editing for your perfect moment.
           </motion.p>
+
+          {/* Buttons + YouTube */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-10 flex flex-col sm:flex-row gap-4"
+            className="mt-10 flex flex-col sm:flex-row gap-4 items-center"
           >
             <a
               href="#services"
@@ -59,12 +92,24 @@ export default function Home() {
             >
               Explore Services
             </a>
+
             <Link
               to="/contact"
               className="rounded-full border-2 border-white px-8 py-3 font-semibold text-white transition hover:bg-white hover:text-black"
             >
               Get in Touch
             </Link>
+
+            {/* YouTube Link */}
+            <a
+              href="https://youtube.com/@kijijipictureskefilms?si=DnSm9-0Blh2wuVdJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full bg-red-600 px-6 py-3 font-semibold text-white hover:bg-red-500 transition"
+            >
+              <Youtube className="h-5 w-5" />
+              YouTube Channel
+            </a>
           </motion.div>
         </div>
       </section>
@@ -80,23 +125,29 @@ export default function Home() {
           >
             Our Services
           </motion.h2>
-          <div className="grid gap-8 md:grid-cols-3">
-            {["Weddings", "Corporate", "Creative Reels"].map((service, i) => (
+
+          <div className="grid gap-10 md:grid-cols-3">
+            {services.map((service, i) => (
               <motion.div
-                key={service}
+                key={service.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2 }}
-                className="rounded-xl bg-white p-8 shadow-lg"
+                className="rounded-xl bg-white overflow-hidden shadow-lg hover:shadow-2xl transition"
               >
-                <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-yellow-100 flex items-center justify-center">
-                  <span className="text-2xl">Camera</span>
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-48 object-cover"
+                />
+
+                <div className="p-6">
+                  <h3 className="mb-2 text-xl font-semibold">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600">{service.description}</p>
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">{service}</h3>
-                <p className="text-gray-600">
-                  Cinematic storytelling tailored to your vision.
-                </p>
               </motion.div>
             ))}
           </div>
@@ -107,7 +158,7 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="mx-auto max-w-7xl px-6">
           <motion.div
-            initial={{ opacity:   0, y: 30 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
@@ -117,20 +168,30 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Nature is My Canvas
               </h2>
+
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                At <span className="font-semibold text-yellow-600">Done Pictures</span>, we specialize in{" "}
-                <strong>nature videography</strong> — capturing the raw beauty of landscapes, wildlife, and
-                untouched environments with cinematic precision.
+                At{" "}
+                <span className="font-semibold text-yellow-600">
+                  Done Pictures
+                </span>
+                , we specialize in <strong>nature</strong> capturing
+                the raw beauty of landscapes, wildlife, and untouched
+                environments with cinematic precision.
               </p>
+
               <p className="text-gray-600 mb-6 leading-relaxed">
-                From sunrise over the savanna to waterfalls in hidden forests, we bring the soul of the wild to life
-                through storytelling, color grading, and sound design that feels as real as being there.
+                From sunrise over the savanna to waterfalls in hidden forests,
+                we bring the soul of the wild to life through storytelling, color
+                grading, and sound design that feels as real as being there.
               </p>
+
               <p className="text-gray-600 leading-relaxed">
-                Whether it's a conservation documentary, eco-tourism promo, or personal adventure reel —{" "}
+                Whether it's a conservation documentary, eco-tourism promo, or
+                personal adventure reel {" "}
                 <em>we don’t just record nature, we honor it.</em>
               </p>
             </div>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -165,7 +226,9 @@ export default function Home() {
                 <Phone className="w-3 h-3" />
                 +254 707888778
               </a>
+
               <span className="hidden sm:inline text-gray-600">•</span>
+
               <a
                 href="mailto:picturesbydone@gmail.com"
                 className="flex items-center gap-1 hover:text-yellow-400 transition"
@@ -173,7 +236,9 @@ export default function Home() {
                 <Mail className="w-3 h-3" />
                 picturesbydone@gmail.com
               </a>
+
               <span className="hidden sm:inline text-gray-600">•</span>
+
               <a
                 href="https://www.instagram.com/done_pics?igsh=MXhncGtrbTdmc212aQ=="
                 target="_blank"
@@ -184,6 +249,7 @@ export default function Home() {
                 @donepictures
               </a>
             </div>
+
             <p className="text-xs text-gray-500">
               © {new Date().getFullYear()} Done Pictures. All rights reserved.
             </p>
